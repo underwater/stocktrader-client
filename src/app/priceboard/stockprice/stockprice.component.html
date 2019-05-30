@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- which cards not being laid out horizontally -->
+    <div class="card-group">
+      <div class="card border-dark m-2 bg-dark text-white">
+        <div class="card-header">
+          <h1>{{stock.symbol}}</h1>
+          <p class="card-text">{{stock.description}}</p>
+        </div>
+
+        <!-- how to structure a grid here to layout the price  display -->
+        <div class="card-body ">
+          <i class="col-lg-3">$103.25</i>
+          <i class="col-lg-3">+ 3.24 %</i>
+          <i class="fa fa-arrow-circle-o-up col-lg-3 "></i>
+
+       </div>
+        <div class="card-footer ">
+          <button type="button" class="btn btn-success">BUY</button>
+          <button type="button" class="btn btn-danger float-right ">SELL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 
-export interface Stockprice {
+export interface StockPrice {
   symbol: string;
   price: number;
- 
+
 }

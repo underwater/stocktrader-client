@@ -1,4 +1,4 @@
-import { Stockprice } from './../models/stockprice';
+import { StockPrice } from './../models/stockprice';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
@@ -20,7 +20,7 @@ export class PriceService {
 
   constructor() {}
 
-  get priceUpdates$(): Observable<Array<Stockprice>> {
+  get priceUpdates$(): Observable<Array<StockPrice>> {
 
     return this.wsSubject.asObservable();
   }

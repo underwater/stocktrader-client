@@ -3,10 +3,9 @@ import { Stock } from 'src/app/models/stock';
 
 @Component({
   selector: 'stockprice',
-  templateUrl: './stockprice.component.html',
-  styleUrls: ['./stockprice.component.css']
+  templateUrl: './stockprice.component.html'
 })
-export class StockpriceComponent implements OnInit {
+export class StockPriceComponent implements OnInit {
 
   @Input()
   stock: Stock;

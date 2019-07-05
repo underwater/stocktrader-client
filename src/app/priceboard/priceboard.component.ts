@@ -2,16 +2,16 @@ import { PriceService } from './../services/price.service';
 import { StockService } from './../services/stock.service';
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../models/stock';
-import { Stockprice } from '../models/stockprice';
+import { StockPrice } from '../models/stockprice';
 
 @Component({
   selector: 'priceboard',
-  templateUrl: './priceboard.component.html',
-  styleUrls: ['./priceboard.component.css']
+  templateUrl: './priceboard.component.html'
 })
-export class PriceboardComponent implements OnInit {
+export class PriceBoardComponent implements OnInit {
   stocks: Array<Stock> = new Array<Stock>();
-  prices: Array<Stockprice> = new Array<Stockprice>();
+    prices: Array<StockPrice> = new Array<StockPrice>();
+
 
   constructor(
     private stockService: StockService,

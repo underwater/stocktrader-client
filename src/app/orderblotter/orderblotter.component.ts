@@ -4,10 +4,9 @@ import { Order } from "../models/order";
 
 @Component({
   selector: "orderblotter",
-  templateUrl: "./orderblotter.component.html",
-  styleUrls: ["./orderblotter.component.css"]
+  templateUrl: "./orderblotter.component.html"
 })
-export class OrderblotterComponent implements OnInit {
+export class OrderBlotterComponent implements OnInit {
   orders: Array<Order>;
 
   constructor(private orderService: OrderService) {}

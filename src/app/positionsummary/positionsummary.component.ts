@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'positionsummary',
-  templateUrl: './positionsummary.component.html',
-  styleUrls: ['./positionsummary.component.css']
+  templateUrl: './positionsummary.component.html'
 })
-export class PositionsummaryComponent implements OnInit {
+export class PositionSummaryComponent implements OnInit {
 
   constructor() { }
 

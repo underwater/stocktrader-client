@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { OrderblotterComponent } from './orderblotter.component';
+import { OrderBlotterComponent } from './orderblotter.component';
 
 describe('OrderblotterComponent', () => {
-  let component: OrderblotterComponent;
-  let fixture: ComponentFixture<OrderblotterComponent>;
+  let component: OrderBlotterComponent;
+  let fixture: ComponentFixture<OrderBlotterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderblotterComponent ]
+      declarations: [ OrderBlotterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrderblotterComponent);
+    fixture = TestBed.createComponent(OrderBlotterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

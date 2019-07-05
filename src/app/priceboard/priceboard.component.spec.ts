@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PriceboardComponent } from './priceboard.component';
+import { PriceBoardComponent } from './priceboard.component';
 
 describe('PriceboardComponent', () => {
-  let component: PriceboardComponent;
-  let fixture: ComponentFixture<PriceboardComponent>;
+  let component: PriceBoardComponent;
+  let fixture: ComponentFixture<PriceBoardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PriceboardComponent ]
+      declarations: [ PriceBoardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PriceboardComponent);
+    fixture = TestBed.createComponent(PriceBoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

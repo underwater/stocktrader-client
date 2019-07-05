@@ -10,4 +10,5 @@
 
 export const environment = {
   production: false,
+  serverRoot: "http://localhost:3001"
 };

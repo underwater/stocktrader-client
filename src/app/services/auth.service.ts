@@ -3,15 +3,37 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import * as jwt_decode from 'jwt-decode';
+import { Observer, Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
     /**
-     * 1. Finish the service.
      * 2. MVVM Pattern for SignUp and SignIn
      * 3. Write the views
+     * 4. Global Error Handler Angular
      */
+
+    private _accessTokenObserver: Observer<string>;
+    public accessToken$: Observable<string> = new Observable(observer => {
+        this._accessTokenObserver = observer;
+    });
+
+    public tokenExpired: Observable<boolean> = new Observable(observer => {
+        setInterval(() => {
+            if (!this.tokenExpiresAt) {
+                observer.next(true);
+            }
+            else {
+                if (this.tokenExpiresAt < new Date()) {
+                    observer.next(true);
+                }
+                else {
+                    observer.next(false);
+                }
+            }
+        }, 10000);
+    });
 
     constructor(private _httpClient: HttpClient) { }
 
@@ -20,7 +42,7 @@ export class AuthService {
     }
 
     get tokenExpiresAt(): Date {
-        return new Date(localStorage.getItem("tokenExpiresAt"));
+        return new Date(parseInt(localStorage.getItem("tokenExpiresAt")));
     }
 
     get accessToken(): string {
@@ -38,6 +60,7 @@ export class AuthService {
             localStorage.setItem("tokenExpiresAt", tokenExpiresAt);
         }
         localStorage.setItem("accessToken", value);
+        this._accessTokenObserver.next(value);
     }
 
 
@@ -48,14 +71,18 @@ export class AuthService {
     };
 
     async signUp(user: User): Promise<string> {
-        return this._httpClient.post<string>(this._endpoints.singUp, user).toPromise();
+        let accessToken = await this._httpClient.post<string>(this._endpoints.singUp, user).toPromise();
+        this.accessToken = accessToken;
+        return accessToken;
     }
 
     async signIn(email: string, password: string): Promise<any> {
-        return this._httpClient.post<string>(this._endpoints.signIn, {
+        let accessToken = await this._httpClient.post<string>(this._endpoints.signIn, {
             email,
             password
-        });
+        }).toPromise();
+        this.accessToken = accessToken;
+        return accessToken;
     }
 
     logout() {

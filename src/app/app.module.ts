@@ -6,6 +6,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -21,15 +22,25 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { AuthService } from './services/auth.service';
+import { SignUpViewModel } from './view-models/sign-up.view-model';
+import { SignInViewModel } from './view-models/sign-in.view-model';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+      AppComponent,
+      SignUpComponent,
+      SignInComponent,
+      FormControlStatusPipe
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    ReactiveFormsModule,
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),
@@ -44,7 +55,7 @@ import { AuthService } from './services/auth.service';
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [AuthService]
+  providers: [AuthService, SignUpViewModel, SignInViewModel]
 })
 export class AppModule {
 }

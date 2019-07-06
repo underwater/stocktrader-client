@@ -8,6 +8,8 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -21,15 +23,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NbLoginComponent,
+        component: SignInComponent,
       },
       {
         path: 'login',
-        component: NbLoginComponent,
+        component: SignInComponent,
       },
       {
         path: 'register',
-        component: NbRegisterComponent,
+        component: SignUpComponent,
       },
       {
         path: 'logout',

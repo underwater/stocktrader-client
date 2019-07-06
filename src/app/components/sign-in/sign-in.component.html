@@ -1,0 +1,27 @@
+<form [formGroup]="form">
+    <div class="form-group">
+        <input
+            type="text"
+            nbinput
+            class="form-control"
+            formControlName="email"
+            placeholder="Email Address"
+            [ngClass]="emailControl | formControlStatus"
+            required
+        />
+    </div>
+    <div class="form-group">
+        <input
+            type="password"
+            nbinput
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+            [ngClass]="passwordControl | formControlStatus"
+            required
+        />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" (click)="submit()">Sign In</button>
+    </div>
+</form>

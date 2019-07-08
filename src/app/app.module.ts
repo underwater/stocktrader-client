@@ -20,6 +20,7 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbAlertModule,
 } from '@nebular/theme';
 import { AuthService } from './services/auth.service';
 import { SignUpViewModel } from './view-models/sign-up.view-model';
@@ -42,7 +43,7 @@ import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
     AppRoutingModule,
     ReactiveFormsModule,
     ThemeModule.forRoot(),
-
+    NbAlertModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

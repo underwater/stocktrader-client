@@ -40,4 +40,9 @@
     <div class="form-group">
         <button class="btn btn-primary" (click)="submit()">Sign Up</button>
     </div>
+    <div class="form-group" *ngIf="hasError">
+        <nb-alert status="danger" role="alert">
+            <span>Oops something's wrong. Check your input and try again</span>
+        </nb-alert>
+    </div>
 </form>

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
     templateUrl: 'sign-up.component.html'
 })
 export class SignUpComponent implements OnInit {
+    hasError: boolean = false;
     form: FormGroup = new FormGroup({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]),
         lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]),
@@ -32,13 +33,23 @@ export class SignUpComponent implements OnInit {
     }
 
     async submit() {
+        this.hasError = false;
         if (this.form.valid) {
-            this.vm.user.firstName = this.firstNameInput.value;
-            this.vm.user.lastName = this.lastNameInput.value;
-            this.vm.user.email = this.emailInput.value;
-            this.vm.user.password = this.passwordInput.value;
-            await this.vm.signUp();
-            this._router.navigate(['pages', 'dashboard']);
+            try {
+                this.vm.user.firstName = this.firstNameInput.value;
+                this.vm.user.lastName = this.lastNameInput.value;
+                this.vm.user.email = this.emailInput.value;
+                this.vm.user.password = this.passwordInput.value;
+                await this.vm.signUp();
+                this._router.navigate(['pages', 'dashboard']);
+            }
+            catch (err) {
+                this.hasError = true;
+                console.log(err);
+            }
+        }
+        else {
+            this.hasError = true;
         }
     }
 

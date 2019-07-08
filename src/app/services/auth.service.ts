@@ -9,8 +9,6 @@ import { Observer, Observable } from 'rxjs';
 export class AuthService {
 
     /**
-     * 2. MVVM Pattern for SignUp and SignIn
-     * 3. Write the views
      * 4. Global Error Handler Angular
      */
 

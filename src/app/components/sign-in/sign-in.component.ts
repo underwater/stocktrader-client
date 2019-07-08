@@ -37,13 +37,17 @@ export class SignInComponent implements OnInit {
     async submit() {
         this.hasError = false;
         if (this.form.valid) {
-            let email = this.emailControl.value;
-            let password = this.passwordControl.value;
+            try {
+                let email = this.emailControl.value;
+                let password = this.passwordControl.value;
 
-            this.vm.user = email;
-            this.vm.user = password;
-            await this.vm.signIn();
-            this._router.navigate(['pages', 'dashboard'])
+                this.vm.user = email;
+                this.vm.user = password;
+                await this.vm.signIn();
+                this._router.navigate(['pages', 'dashboard'])
+            } catch (err) {
+                this.hasError = true;
+            }
         }
         else {
             this.hasError = true;

@@ -15,11 +15,11 @@ export class AuthService {
      */
 
     private _accessTokenObserver: Observer<string>;
-    public accessToken$: Observable<string> = new Observable(observer => {
+    public accessToken$: Observable<string> = Observable.create(observer => {
         this._accessTokenObserver = observer;
     });
 
-    public tokenExpired: Observable<boolean> = new Observable(observer => {
+    public tokenExpired: Observable<boolean> = Observable.create(observer => {
         setInterval(() => {
             if (!this.tokenExpiresAt) {
                 observer.next(true);
@@ -35,7 +35,12 @@ export class AuthService {
         }, 10000);
     });
 
-    constructor(private _httpClient: HttpClient) { }
+    constructor(private _httpClient: HttpClient) {
+        this.accessToken$ = Observable.create(observer => {
+            this._accessTokenObserver = observer;
+            console.log("Observer: ", observer);
+        });
+    }
 
     get user(): User {
         return JSON.parse(localStorage.getItem("User"));
@@ -66,20 +71,22 @@ export class AuthService {
 
     private _baseUrl: string = `${environment.serverRoot}/api/auth`;
     private _endpoints = {
-        singUp: this._baseUrl + "/singup",
+        singUp: this._baseUrl + "/signup",
         signIn: this._baseUrl + "/signin"
     };
 
     async signUp(user: User): Promise<string> {
-        let accessToken = await this._httpClient.post<string>(this._endpoints.singUp, user).toPromise();
+        let accessToken = await this._httpClient.post(this._endpoints.singUp, user, { responseType: "text" }).toPromise();
         this.accessToken = accessToken;
         return accessToken;
     }
 
     async signIn(email: string, password: string): Promise<any> {
-        let accessToken = await this._httpClient.post<string>(this._endpoints.signIn, {
+        let accessToken = await this._httpClient.post(this._endpoints.signIn, {
             email,
             password
+        }, {
+            responseType: "text"
         }).toPromise();
         this.accessToken = accessToken;
         return accessToken;

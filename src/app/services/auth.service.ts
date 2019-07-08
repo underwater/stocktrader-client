@@ -38,7 +38,6 @@ export class AuthService {
     constructor(private _httpClient: HttpClient) {
         this.accessToken$ = Observable.create(observer => {
             this._accessTokenObserver = observer;
-            console.log("Observer: ", observer);
         });
     }
 
@@ -65,7 +64,9 @@ export class AuthService {
             localStorage.setItem("tokenExpiresAt", tokenExpiresAt);
         }
         localStorage.setItem("accessToken", value);
-        this._accessTokenObserver.next(value);
+        if (this._accessTokenObserver) {
+            this._accessTokenObserver.next(value);
+        }
     }
 
 

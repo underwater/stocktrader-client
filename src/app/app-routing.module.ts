@@ -26,11 +26,11 @@ const routes: Routes = [
         component: SignInComponent,
       },
       {
-        path: 'login',
+        path: 'signin',
         component: SignInComponent,
       },
       {
-        path: 'register',
+        path: 'signup',
         component: SignUpComponent,
       },
       {

@@ -58,7 +58,7 @@ export class AuthService {
         const decoded = jwt_decode(value);
         if (decoded) {
             localStorage.setItem("user", JSON.stringify(decoded.user));
-            let tokenExpiresAt = decoded.exp;
+            let tokenExpiresAt = decoded.exp;  //1528721821
             localStorage.setItem("tokenExpiresAt", tokenExpiresAt);
         }
         localStorage.setItem("accessToken", value);

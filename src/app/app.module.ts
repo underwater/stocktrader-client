@@ -5,7 +5,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
@@ -28,6 +28,7 @@ import { SignInViewModel } from './view-models/sign-in.view-model';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
+import { ErrorHandlerService } from './services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,12 @@ import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [AuthService, SignUpViewModel, SignInViewModel]
+  providers: [
+      AuthService,
+      SignUpViewModel,
+      SignInViewModel,
+      {provide: ErrorHandler, useClass: ErrorHandlerService}
+]
 })
 export class AppModule {
 }

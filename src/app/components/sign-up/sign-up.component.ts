@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { SignUpViewModel } from '../../view-models/sign-up.view-model';
 import { Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
     selector: 'sign-up',
@@ -53,7 +54,7 @@ export class SignUpComponent implements OnInit {
         }
     }
 
-    constructor(public vm: SignUpViewModel, private _router: Router) { }
+    constructor(public vm: SignUpViewModel, private _router: Router, private _toastrService: NbToastrService) { }
 
     ngOnInit() { }
 }

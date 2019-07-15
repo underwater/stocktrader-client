@@ -1,10 +1,15 @@
 import { Injectable, ErrorHandler, Injector, NgZone } from '@angular/core';
-import { AuthenticationError } from '../errors/authentication.error';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
+
 import { AccessDeniedError } from '../errors/access-denied.error';
 import { NotFoundError } from '../errors/not-found.error';
+import { AuthenticationError } from '../errors/authentication.error';
+
+//Browser Error Handler
+        //Angular Error Handler
+            //Override the default Angular Error Handler
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {
@@ -35,6 +40,7 @@ export class ErrorHandlerService implements ErrorHandler {
     }
 
     async authenticationErrorHandler(error: AuthenticationError) {
+        // zone.run() insures that passed function runs within Angular's change tracking
         await this.zone.run(async () => {
             this.authService.logout();
             await this.navigate(['auth', 'login']);

@@ -29,6 +29,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
 import { ErrorHandlerService } from './services/error-handler.service';
+import { AuthGuard } from './services/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ErrorHandlerService } from './services/error-handler.service';
       AuthService,
       SignUpViewModel,
       SignInViewModel,
+      AuthGuard,
       {provide: ErrorHandler, useClass: ErrorHandlerService}
 ]
 })

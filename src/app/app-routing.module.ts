@@ -10,12 +10,14 @@ import {
 } from '@nebular/auth';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthGuard } from './services/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'pages',
     loadChildren: () => import('app/pages/pages.module')
       .then(m => m.PagesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth',

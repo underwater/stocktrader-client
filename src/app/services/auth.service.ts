@@ -8,10 +8,6 @@ import { Observable, Observer } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-    /**
-     * 4. Global Error Handler Angular
-     */
-
     private _accessTokenObserver: Observer<string>;
     public accessToken$: Observable<string> = Observable.create(observer => {
         this._accessTokenObserver = observer;
@@ -40,7 +36,7 @@ export class AuthService {
     }
 
     get user(): User {
-        return JSON.parse(localStorage.getItem("User"));
+        return JSON.parse(localStorage.getItem("user"));
     }
 
     get tokenExpiresAt(): Date {
@@ -67,6 +63,9 @@ export class AuthService {
         }
     }
 
+    public get isLoggedIn(): boolean {
+        return this.accessToken && this.accessToken.length > 0;
+    }
 
     private _baseUrl: string = `${environment.serverRoot}/api/auth`;
     private _endpoints = {
@@ -92,6 +91,6 @@ export class AuthService {
     }
 
     logout() {
-        this.accessToken = null;
+        localStorage.clear();
     }
 }

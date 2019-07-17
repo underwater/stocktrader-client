@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -38,17 +40,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'Profile' }, { title: 'Log out', } ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private _authService: AuthService,
+              private _router: Router) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
@@ -69,6 +73,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+    if (this._authService.isLoggedIn && this._authService.user) {
+        this.user = {
+            name: `${this._authService.user.firstName} ${this._authService.user.lastName}`
+        }
+    }
+  }
+
+  get isLoggedIn(): boolean {
+      return this._authService.isLoggedIn;
   }
 
   ngOnDestroy() {
@@ -90,5 +103,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logout() {
+    this._authService.logout();
+    this._router.navigate(["auth", "signin"]);
   }
 }

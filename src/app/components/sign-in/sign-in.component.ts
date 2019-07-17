@@ -41,8 +41,8 @@ export class SignInComponent implements OnInit {
                 let email = this.emailControl.value;
                 let password = this.passwordControl.value;
 
-                this.vm.user = email;
-                this.vm.user = password;
+                this.vm.user.email = email;
+                this.vm.user.password = password;
                 await this.vm.signIn();
                 this._router.navigate(['pages', 'dashboard'])
             } catch (err) {

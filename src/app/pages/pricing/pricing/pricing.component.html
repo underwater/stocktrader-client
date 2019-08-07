@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-between">
+        <button class="btn btn-primary my-1" (click)="refresh()">Refresh</button>
+        <button class="btn btn-danger my-1" (click)="toggleLiveMode()">
+            Live mode {{live | liveMode}}
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3" *ngFor="let price of vm.prices">
+        <stock-price [price]="price"></stock-price>
+    </div>
+</div>

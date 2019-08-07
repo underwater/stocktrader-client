@@ -33,6 +33,7 @@ import { AuthGuard } from './services/guards/auth.guard';
 import { UnAuthenticatedGuard } from './services/guards/unauthenticated.guard';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 import { PricingService } from './services/pricing.service';
+import { PricingViewModel } from './view-models/pricing.view-model';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PricingService } from './services/pricing.service';
       PricingService,
       SignUpViewModel,
       SignInViewModel,
+      PricingViewModel,
       AuthGuard,
       UnAuthenticatedGuard,
       {provide: ErrorHandler, useClass: ErrorHandlerService},

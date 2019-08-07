@@ -5,6 +5,7 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
+import { PricingViewModel } from './view-models/pricing.view-model';
 
 @Component({
   selector: 'ngx-app',
@@ -14,11 +15,11 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService) {
+  constructor(private analytics: AnalyticsService, private _pricingVm: PricingViewModel) {
   }
 
-  ngOnInit(): void {
-
+  async ngOnInit() {
+    // await this._pricingVm.init();
     this.analytics.trackPageViews();
   }
 }

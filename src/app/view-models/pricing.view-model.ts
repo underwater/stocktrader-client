@@ -4,6 +4,12 @@ import { Price } from '../models/price.model';
 
 @Injectable()
 export class PricingViewModel {
+    private _initialized: boolean = false;
+
+    get initialized(): boolean {
+        return this._initialized;
+    }
+
     public stocks: string[] = [
         "MSFT", "AAPL", "AMZN", "FB", "GOOG"
     ];
@@ -14,6 +20,7 @@ export class PricingViewModel {
 
     async init() {
         await this.refresh();
+        this._initialized = true;
     }
 
     async refresh() {

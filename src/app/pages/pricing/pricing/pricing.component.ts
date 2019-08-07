@@ -26,7 +26,9 @@ export class PricingComponent implements OnInit {
     constructor(public vm: PricingViewModel) { }
 
     async ngOnInit() {
-        await this.vm.init();
+        if (!this.vm.initialized) {
+            await this.vm.init();
+        }
     }
 
     toggleLiveMode() {

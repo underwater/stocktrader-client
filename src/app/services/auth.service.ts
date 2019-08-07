@@ -67,7 +67,7 @@ export class AuthService {
         return this.accessToken && this.accessToken.length > 0;
     }
 
-    private _baseUrl: string = `${environment.serverRoot}/api/auth`;
+    private _baseUrl: string = `${environment.serverRoot}/auth`;
     private _endpoints = {
         singUp: this._baseUrl + "/signup",
         signIn: this._baseUrl + "/signin"

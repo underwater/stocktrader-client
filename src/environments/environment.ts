@@ -10,5 +10,8 @@
 
 export const environment = {
   production: false,
-  serverRoot: "http://localhost:3001"
+  serverRoot: "http://localhost:8080/api",
+  endpoints: {
+    pricing: "pricing/"
+  }
 };

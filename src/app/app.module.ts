@@ -32,6 +32,7 @@ import { ErrorHandlerService } from './services/error-handler.service';
 import { AuthGuard } from './services/guards/auth.guard';
 import { UnAuthenticatedGuard } from './services/guards/unauthenticated.guard';
 import { AuthInterceptor } from './services/interceptors/auth.interceptor';
+import { PricingService } from './services/pricing.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
   bootstrap: [AppComponent],
   providers: [
       AuthService,
+      PricingService,
       SignUpViewModel,
       SignInViewModel,
       AuthGuard,

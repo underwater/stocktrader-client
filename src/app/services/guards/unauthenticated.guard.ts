@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { NbToastrService } from '@nebular/theme';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class UnAuthenticatedGuard implements CanActivate {
     constructor(private _authService: AuthService, private _router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this._authService.isLoggedIn) {
-            return true;
+            this._router.navigate(["pages", "dashboard"]);
+            return false;
         }
         else {
-            // this._toastrService.danger("Authentication Error", "You need to login");
-            this._router.navigate(['auth', 'signin']);
-            return false;
+            return true;
         }
     }
 }

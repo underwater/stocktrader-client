@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
@@ -30,6 +30,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { FormControlStatusPipe } from './pipes/form-control-status.pipe';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { AuthGuard } from './services/guards/auth.guard';
+import { UnAuthenticatedGuard } from './services/guards/unauthenticated.guard';
+import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,13 @@ import { AuthGuard } from './services/guards/auth.guard';
       SignUpViewModel,
       SignInViewModel,
       AuthGuard,
-      {provide: ErrorHandler, useClass: ErrorHandlerService}
+      UnAuthenticatedGuard,
+      {provide: ErrorHandler, useClass: ErrorHandlerService},
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+      }
 ]
 })
 export class AppModule {

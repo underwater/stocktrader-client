@@ -11,6 +11,7 @@ import {
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthGuard } from './services/guards/auth.guard';
+import { UnAuthenticatedGuard } from './services/guards/unauthenticated.guard';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
         component: NbResetPasswordComponent,
       },
     ],
+    canActivate: [UnAuthenticatedGuard]
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },

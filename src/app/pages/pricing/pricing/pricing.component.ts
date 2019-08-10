@@ -17,21 +17,23 @@ export class LiveModePipe implements PipeTransform {
     templateUrl: 'pricing.component.html'
 })
 export class PricingComponent implements OnInit {
-    live: boolean = false;
+    private _stockNames: string[] = [
+        "MSFT", "AAPL", "AMZN", "FB"
+    ];
 
     async refresh() {
-        await this.vm.refresh();
+        await this.vm.refresh(this._stockNames);
     }
 
     constructor(public vm: PricingViewModel) { }
 
     async ngOnInit() {
         if (!this.vm.initialized) {
-            await this.vm.init();
+            await this.vm.init(this._stockNames);
         }
     }
 
     toggleLiveMode() {
-        this.live = !this.live;
+        this.vm.live = !this.vm.live;
     }
 }

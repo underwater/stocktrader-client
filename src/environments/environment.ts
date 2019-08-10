@@ -13,5 +13,10 @@ export const environment = {
   serverRoot: "http://localhost:8080/api",
   endpoints: {
     pricing: "pricing/"
+  },
+  events: {
+    startPriceWatch: "startPriceWatch",
+    stopPriceWatch: "stopPriceWatch",
+    stockPricesChanged: "stockPricesChanged"
   }
 };
